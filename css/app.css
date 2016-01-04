@@ -1,0 +1,84 @@
+body {
+   padding-top: 60px;
+   padding-bottom: 20px;
+}
+
+.ui-select-highlight {
+   font-weight: bold;
+}
+
+.nav-tabs {
+   margin-bottom: 15px;
+}
+
+.keywords-btn-block {
+    margin-bottom: 5px;
+}
+
+.group-head {
+    padding-bottom: 7px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.treeview, .treeview ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+    overflow: hidden;
+}
+
+.treeview li
+{
+    position: relative;
+    padding: 0 0 0 20px;
+    line-height: 20px;
+}
+
+.treeview li .expanded
+{
+    padding: 1px 10px;
+    background-image: url("../img/folder.png");
+    background-repeat: no-repeat;
+}
+
+.treeview li .collapsed
+{
+    padding: 1px 10px;
+    background-image: url("../img/folder-closed.png");
+    background-repeat: no-repeat;
+}
+
+.treeview li .normal
+{
+    padding: 1px 10px;
+    background-image: url("../img/file.png");
+    background-repeat: no-repeat;
+}
+
+.treeview li i, .treeview li span
+{
+    cursor: pointer;
+}
+
+/* Keywords */
+.table-keywords__tr:hover {
+    cursor: pointer !important;
+}
+
+.table-keywords-head {
+    margin-bottom: 0;
+}
+
+.table-keywords-body {
+    overflow-y: scroll;
+    height: 610px;
+}
+
+@media screen and (max-height: 680px) {
+    .table-keywords-body {
+        overflow-y: scroll;
+        height: 335px;
+    }
+}

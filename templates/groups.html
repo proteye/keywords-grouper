@@ -1,0 +1,19 @@
+<div class="row group-head">
+    <div class="col-md-5">
+        <input type="text" ng-model="main.projectName" class="form-control" placeholder="название..."/>
+    </div>
+    <div class="col-md-7">
+        <button class="btn btn-sm btn-primary" ng-click="groupCtrl.saveProject(main.project)" ng-disabled="!main.projectName">Сохранить</button>
+        <a class="btn btn-sm btn-default" ng-click="groupCtrl.exportProject(main.project)" ng-disabled="!main.projectName">Экспорт CSV</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul treeview>
+            <li ng-repeat="item in groups" treeview-childs="item.items">
+                <span>{{item.phrase}}</span>
+            </li>
+        </ul>
+    </div>
+</div>

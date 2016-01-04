@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12 keywords-btn-block">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 table-keywords">
+        <table class="table table-bordered table-hover table-keywords-head">
+            <thead>
+            <tr>
+                <th width="30" class="table-keywords__tr" ng-click="">
+                    <input type="checkbox"/>
+                </th>
+                <th>Фраза</th>
+                <th width="150" ng-show="main.freqShow">Частотность</th>
+                <th width="150" ng-show="main.competitionShow">Конкуренция</th>
+            </tr>
+            </thead>
+        </table>
+        <div class="table-keywords-body">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <tr class="table-keywords__tr"
+                    ng-repeat="item in main.project.allocated | limitTo: 300 | orderBy:'freq':true">
+
+                    <td width="30"><input ng-click="" type="checkbox" ng-model="item.checked"/></td>
+                    <td ng-init="item.visible = true">
+                        {{item.phrase}}
+                    </td>
+                    <td width="{{main.competitionShow ? 150 : 133}}" ng-show="main.freqShow">{{item.freq}}</td>
+                    <td width="133" ng-show="main.competitionShow">{{item.competition}}</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

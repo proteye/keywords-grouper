@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <input filter-enter="1" ng-model="keywordCtrl.filterInput1" type="text" placeholder="найти..." class="form-control"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group has-success ng-hide" ng-show="keywordCtrl.inputShow2">
+            <input filter-enter="2" ng-model="keywordCtrl.filterInput2" type="text" placeholder="найти..." class="form-control"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group has-warning ng-hide" ng-show="keywordCtrl.inputShow3">
+            <input filter-enter="3" ng-model="keywordCtrl.filterInput3" type="text" placeholder="найти..." class="form-control"/>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group has-error ng-hide" ng-show="keywordCtrl.inputShow4">
+            <input filter-enter="4" ng-model="keywordCtrl.filterInput4" type="text" placeholder="найти..." class="form-control"/>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-sm-6 keywords-btn-block">
+        <button class="btn btn-sm btn-success" ng-click="keywordCtrl.createGroup()">Создать группу</button>
+        <button class="btn btn-sm btn-default" ng-click="keywordCtrl.toBlacklist()">В черный список</button>
+    </div>
+    <div class="col-md-6 col-sm-6 text-right keywords-btn-block">
+        <button class="btn btn-sm btn-info" type="file"
+                ngf-select="keywordCtrl.uploadProject($file, $invalidFiles)" ngf-max-size="20MB">Загрузить ПРОЕКТ...</button>
+        <button class="btn btn-sm btn-warning" type="file"
+                ngf-select="keywordCtrl.uploadKeywords($file, $invalidFiles)" ngf-max-size="20MB">Загрузить КЛЮЧИ...</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 table-keywords">
+        <table class="table table-bordered table-hover table-keywords-head">
+            <thead>
+            <tr>
+                <th width="30" class="table-keywords__tr" ng-click="keywordCtrl.checkItems(main.project.keywords)">
+                    <input type="checkbox" ng-click="keywordCtrl.checkItems(main.project.keywords)" ng-model="keywordCtrl.checkAll"/>
+                </th>
+                <th>Фраза</th>
+                <th width="150" ng-show="main.freqShow">Частотность</th>
+                <th width="150" ng-show="main.competitionShow">Конкуренция</th>
+            </tr>
+            </thead>
+        </table>
+        <div class="table-keywords-body">
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <tr class="table-keywords__tr"
+                    ng-click="keywordCtrl.checkItem(item)"
+                    ng-repeat="item in main.project.keywords | keywordsFilter:keywordCtrl.filterModel1 | keywordsFilter:keywordCtrl.filterModel2 | keywordsFilter:keywordCtrl.filterModel3 | keywordsFilter:keywordCtrl.filterModel4 | limitTo: 300 | orderBy:'freq':true">
+
+                    <td width="30"><input ng-click="keywordCtrl.checkItem(item)" type="checkbox" ng-model="item.checked"/></td>
+                    <td ng-init="item.visible = true">
+                    <span ng-bind-html="item.phrase |
+                    highlight:keywordCtrl.filterModel1:'info' |
+                    highlight:keywordCtrl.filterModel2:'success' |
+                    highlight:keywordCtrl.filterModel3:'warning' |
+                    highlight:keywordCtrl.filterModel4:'danger'"></span>
+                    </td>
+                    <td width="{{main.competitionShow ? 150 : 133}}" ng-show="main.freqShow">{{item.freq}}</td>
+                    <td width="133" ng-show="main.competitionShow">{{item.competition}}</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

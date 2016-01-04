@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-8">
+        <section ng-controller="TabController as tabCtrl">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs">
+                <li ng-class="{active:tabCtrl.isSet(1)}">
+                    <a href ng-click="tabCtrl.setTab(1)">Исходные</a>
+                </li>
+                <li ng-class="{active:tabCtrl.isSet(2)}">
+                    <a href ng-click="tabCtrl.setTab(2)">Распределенные</a>
+                </li>
+                <li ng-class="{active:tabCtrl.isSet(3)}">
+                    <a href ng-click="tabCtrl.setTab(3)">Черный список</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" ng-controller="KeywordController as keywordCtrl">
+
+                <div class="tab-pane"
+                     ng-class="{active:tabCtrl.isSet(1)}"
+                     ng-include="'templates/keywords.html'">
+                </div>
+
+                <div class="tab-pane"
+                     ng-class="{active:tabCtrl.isSet(2)}"
+                     ng-include="'templates/allocated.html'">
+                </div>
+
+                <div class="tab-pane"
+                     ng-class="{active:tabCtrl.isSet(3)}"
+                    ng-include="'templates/blacklist.html'">
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col-md-4" ng-include="'templates/groups.html'" ng-controller="GroupController as groupCtrl">
+    </div>
+</div>
