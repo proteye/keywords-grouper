@@ -82,3 +82,13 @@ body {
         height: 335px;
     }
 }
+
+
+/* Icons */
+.arrow-icon {
+    color: #2EACD3;
+}
+
+.remove-icon {
+    color: #CA3B37;
+}

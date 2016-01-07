@@ -7,7 +7,7 @@
     ])
         .value('appName', 'Keywords Grouper')
 
-        .value('version', '0.1.0')
+        .value('version', '0.1.1')
     ;
 
 })();

@@ -68,6 +68,8 @@
                         el.prepend($('<i />').addClass('normal').attr('ng-hide', 'config.hasItems'));
                         el.prepend($('<i />').addClass('expanded').attr('ng-show', 'config.hasItems && !config.collapsed').attr('ng-click', 'collapse(config)'));
                         el.prepend($('<i />').addClass('collapsed').attr('ng-show', 'config.hasItems && config.collapsed').attr('ng-click', 'collapse(config)'));
+                        el.prepend($('<i />').addClass('glyphicon glyphicon-arrow-right arrow-icon').attr('ng-show', 'config.hasItems').attr('ng-click', 'groupCtrl.addToGroup(item)'));
+                        el.append($('<i />').addClass('glyphicon glyphicon-remove remove-icon').attr('ng-show', 'config.hasItems').attr('ng-click', 'groupCtrl.removeGroup(main.project.groups, $index)'));
                     });
 
                     var itemTemplate = element.html();

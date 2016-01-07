@@ -57,12 +57,13 @@
                 var tempKeywords = _.filter($scope.main.project.keywords, function (key) {
                     var checked = key.checked;
                     if (checked) {
-                        var _key = {phrase: key.phrase};
+                        var _key = {id: key.id};
+                        _key.phrase = key.phrase;
                         if (key.freq !== undefined) {
                             _key.freq = key.freq;
                         }
                         if (key.competition !== undefined) {
-                            _key.competition = key.freq;
+                            _key.competition = key.competition;
                         }
                         _key.items = null;
                         tempKeys.push(_key);
@@ -172,7 +173,42 @@
                 $scope.groups = newValue;
             });
 
-            this.saveProject = function(project) {
+            this.addToGroup = function (group) {
+                var tempKeywords = _.filter($scope.main.project.keywords, function (key) {
+                    var checked = key.checked;
+                    if (checked) {
+                        var _key = {phrase: key.phrase};
+                        if (key.freq !== undefined) {
+                            _key.freq = key.freq;
+                        }
+                        if (key.competition !== undefined) {
+                            _key.competition = key.competition;
+                        }
+                        _key.items = null;
+                        group.items.push(key);
+                        key.checked = false;
+                        $scope.main.project.allocated.push(key);
+
+                    }
+                    return !checked;
+                });
+                $scope.main.project.keywords = tempKeywords;
+                self.checkAll = false;
+            };
+
+            this.removeGroup = function (groups, index) {
+                _.each(groups[index].items, function (elm1, index1) {
+                    _.each($scope.main.project.allocated, function (elm2, index2) {
+                        if (_.isEqual(elm1.id, elm2.id)) {
+                            $scope.main.project.keywords.push(elm2);
+                            $scope.main.project.allocated.splice(index2, 1);
+                        }
+                    });
+                });
+                groups.splice(index, 1);
+            };
+
+            this.saveProject = function (project) {
                 $scope.main.alert = {message: undefined, type: undefined, show: false};
                 $http({method: 'post', url: '/backend/save_project.php', data: {name: $scope.main.projectName, project: project}})
                     .success(function (data) {
@@ -184,7 +220,7 @@
                 ;
             };
 
-            this.exportProject = function(project) {
+            this.exportProject = function (project) {
                 $scope.main.alert = {message: undefined, type: undefined, show: false};
                 $http({method: 'post', url: '/backend/save_project.php', data: {name: $scope.main.projectName, project: project}})
                     .success(function (data) {
@@ -209,42 +245,52 @@
 
     var keywords = [
         {
+            "id":0,
             "phrase":"ключевые слова",
             "freq":37406
         },
         {
+            "id":1,
             "phrase":"статистики ключевых слов",
             "freq":28651
         },
         {
+            "id":2,
             "phrase":"подобрать ключевые слова",
             "freq":13453
         },
         {
+            "id":3,
             "phrase":"статистика запросов",
             "freq":11983
         },
         {
+            "id":4,
             "phrase":"количество слов",
             "freq":9048
         },
         {
+            "id":5,
             "phrase":"источники ключевых слов",
             "freq":8474
         },
         {
+            "id":6,
             "phrase":"группировщик слов",
             "freq":7595
         },
         {
+            "id":7,
             "phrase":"русский толковый словарь",
             "freq":6961
         },
         {
+            "id":8,
             "phrase":"фонетический разбор онлайн",
             "freq":6588
         },
         {
+            "id":9,
             "phrase":"морфологический разбор слова",
             "freq":6372
         }
