@@ -12,8 +12,9 @@
                 groups: []
             };
             this.projectName = '';
-            this.freqShow = false;
-            this.competitionShow = false;
+            this.freqShow = true;
+            this.competitionShow = true;
+            this.num_of_found = 0;
             this.project.keywords = keywords;
             this.alert = {message: undefined, type: undefined, show: false};
         }])
@@ -213,6 +214,8 @@
                 $http({method: 'post', url: '/backend/save_project.php', data: {name: $scope.main.projectName, project: project}})
                     .success(function (data) {
                         $scope.main.alert = {message: 'Проект успешно сохранен', type: 'success', show: true};
+                        console.log(data);
+                        window.location.href = '/backend/download_project.php?filename=' + data;
                     })
                     .error(function (data) {
                         $scope.main.alert = {message: 'Во время сохранения произошла ошибка', type: 'danger', show: true};
@@ -247,52 +250,62 @@
         {
             "id":0,
             "phrase":"ключевые слова",
-            "freq":37406
+            "freq":37406,
+            "competition":25
         },
         {
             "id":1,
             "phrase":"статистики ключевых слов",
-            "freq":28651
+            "freq":28651,
+            "competition":20
         },
         {
             "id":2,
             "phrase":"подобрать ключевые слова",
-            "freq":13453
+            "freq":13453,
+            "competition":23
         },
         {
             "id":3,
             "phrase":"статистика запросов",
-            "freq":11983
+            "freq":11983,
+            "competition":21
         },
         {
             "id":4,
             "phrase":"количество слов",
-            "freq":9048
+            "freq":9048,
+            "competition":18
         },
         {
             "id":5,
             "phrase":"источники ключевых слов",
-            "freq":8474
+            "freq":8474,
+            "competition":22
         },
         {
             "id":6,
             "phrase":"группировщик слов",
-            "freq":7595
+            "freq":7595,
+            "competition":15
         },
         {
             "id":7,
             "phrase":"русский толковый словарь",
-            "freq":6961
+            "freq":6961,
+            "competition":17
         },
         {
             "id":8,
             "phrase":"фонетический разбор онлайн",
-            "freq":6588
+            "freq":6588,
+            "competition":12
         },
         {
             "id":9,
             "phrase":"морфологический разбор слова",
-            "freq":6372
+            "freq":6372,
+            "competition":24
         }
     ];
 

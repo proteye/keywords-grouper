@@ -22,6 +22,13 @@
 </div>
 
 <div class="row">
+    <div class="col-md-12 col-sm-12">
+        <ul class="list-inline">
+            <li>Всего фраз: {{main.project.keywords.length}}</li>
+            <li>Найдено: {{keywordsFiltered.length}}</li>
+            <li>Отображено: {{keywordsDisplay.length}}</li>
+        </ul>
+    </div>
     <div class="col-md-6 col-sm-12 keywords-btn-block">
         <button class="btn btn-sm btn-success" ng-click="keywordCtrl.createGroup()">Создать группу</button>
         <button class="btn btn-sm btn-default" ng-click="keywordCtrl.toBlacklist()">В черный список</button>
@@ -53,7 +60,7 @@
                 <tbody>
                 <tr class="table-keywords__tr"
                     ng-click="keywordCtrl.checkItem(item)"
-                    ng-repeat="item in main.project.keywords | keywordsFilter:keywordCtrl.filterModel1 | keywordsFilter:keywordCtrl.filterModel2 | keywordsFilter:keywordCtrl.filterModel3 | keywordsFilter:keywordCtrl.filterModel4 | limitTo: 300 | orderBy:'freq':true">
+                    ng-repeat="item in keywordsDisplay = (keywordsFiltered = (main.project.keywords | keywordsFilter:keywordCtrl.filterModel1 | keywordsFilter:keywordCtrl.filterModel2 | keywordsFilter:keywordCtrl.filterModel3 | keywordsFilter:keywordCtrl.filterModel4) | limitTo: 300 | orderBy:'freq':true)">
 
                     <td width="30"><input ng-click="keywordCtrl.checkItem(item)" type="checkbox" ng-model="item.checked"/></td>
                     <td ng-init="item.visible = true">

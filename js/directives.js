@@ -45,6 +45,7 @@
                             scope.keywordCtrl.inputShow2 = !!scope.keywordCtrl.filterModel1 || !!scope.keywordCtrl.filterModel2 || !!scope.keywordCtrl.filterModel3 || !!scope.keywordCtrl.filterModel4;
                             scope.keywordCtrl.inputShow3 = !!scope.keywordCtrl.filterModel2 || !!scope.keywordCtrl.filterModel3 || !!scope.keywordCtrl.filterModel4;
                             scope.keywordCtrl.inputShow4 = !!scope.keywordCtrl.filterModel3 || !!scope.keywordCtrl.filterModel4;
+                            scope.main.num_of_found = 0;
 
                             scope.$apply();
                         }

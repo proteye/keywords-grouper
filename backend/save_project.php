@@ -10,4 +10,10 @@ if ($data) {
         mkdir('../projects', 0755);
     }
     file_put_contents('../projects/' . $filename . '.json', json_encode($json['project']));
+
+    header('Content-Disposition: attachment');
+    echo $filename . '.json';
+    return true;
 }
+
+return false;
